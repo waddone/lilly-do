@@ -1,0 +1,175 @@
+.border-red {
+	border:1px solid red;
+}
+.marg15 {
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+.smallerTd th {
+	padding: 2.5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-bottom: 1px solid #ccc;
+}
+.smallerTd td {
+	border-bottom: 1px solid #ccc;
+	height: 40px;
+	padding: 1px !important;
+}
+.wider {
+	width: 230px !important;
+}
+.wider .delBtn {
+	float: right;
+	margin-top: -25px;
+}
+.updBtn {
+
+}
+.smallerTd input {
+	height: 45px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border:none;
+	border: 1px dashed #ccc;
+	width: 100%;
+}
+.smallerTd input:focus {
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 7.5px;
+	margin-left: 7.5px;
+	position: absolute;
+	font-size: 12px;
+	border: 1px dashed #ccc;
+	box-shadow:0 6px 20px rgba(0,0,0,.65);
+}
+.smallerTd input:nth-child(1):focus {
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 7.5px;
+	margin-left: 7.5px;
+	position: absolute;
+	font-size: 12px;
+	border: 1px dashed #ccc;
+	box-shadow:0 6px 20px rgba(0,0,0,.65);
+}
+.smallerTd input:nth-child(2):focus {
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 7.5px;
+	margin-left: 7.5px;
+	position: absolute;
+	font-size: 12px;
+	border: 1px dashed #ccc;
+	box-shadow:0 6px 20px rgba(0,0,0,.65);
+}
+.smallerTd input:nth-child(8):focus {
+	margin-left: -160px;
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 7.5px;
+	position: absolute;
+	font-size: 12px;
+	border: 1px dashed #ccc;
+	box-shadow:0 6px 20px rgba(0,0,0,.65);
+}
+.smallerTd textarea {
+	height: 45px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border:none;
+	border: 1px dashed #ccc;
+	width: 160px;
+}
+.smallerTd textarea:focus {
+	width: 260px;
+	height: 90px;
+	line-height: 90px;
+	font-size: 12px;
+	position: absolute;
+	border: 1px dashed blue;
+	box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.smallerTd input[type=file] {
+	height: 45px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border:none;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
+.smallerTd {
+	font-size:11px; 
+}
+.smallerTd button {
+	margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.smallerTd .btn {
+    display: inline-block;
+    padding: 2.5px 15px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.mic {
+	position:relative;
+	left:0.5px;
+	top: 0.5px;
+	border-radius: 2.5px;
+	width:46px;
+	height:18px;
+	line-height: 14px;
+	font-size: 11px;
+	padding-top: 3px;
+	text-align: center;
+	color:#fff;
+	background-color:#ff000075;
+	cursor: pointer;
+}
+.smallerTd input:focus .mic {
+	top: 65px;
+}
+.form-horizontal label {
+	display: block;
+	width: 100%;
+}
+#FormTable img {
+	max-height: 40px;
+	margin:0 auto !important;
+}
+.btn-primary-red {
+	background-color:red;
+}
+.btn-primary-green {
+	background-color:green;
+}
+a.btn-primary-green {
+	margin-top: 4px;
+}
+
+.alert-error {
+	background-color: red;
+    color: #fff;
+}

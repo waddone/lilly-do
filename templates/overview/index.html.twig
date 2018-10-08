@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AddressBook overview{% endblock %}
+
+{% block body %}
+    <h1>AddressBook overview</h1>
+
+    <button class="btn btn-primary marg15" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Add new address book</button>
+    <div class="collapse" id="collapseExample">
+        <div class="well">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn">{{ button_label|default('Save data') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    {% if not form.vars.valid %}
+    <div class="alert alert-error">
+        {{ form_errors(form) }}
+    </div>
+    {% endif %}
+
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Address</th>
+                <th>Zip</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>Birthday</th>
+                <th>Email</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody class="smallerTd" id="FormTable">
+            {% for address_book in address_book_c %}
+            <tr>
+            <form method="post" action="{{ app.request.getSchemeAndHttpHost() }}{{ path('edit', {'id': address_book.id}) }}" enctype="multipart/form-data" id="update{{address_book.id}}">
+                <input type="hidden" name="_method" value="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ address_book.id) }}">
+                <input type="hidden" name="id" value="{{ address_book.id }}">
+                <td>
+                    {% if address_book.picture is not empty %}
+                        <img class="img-responsive" src="{{ asset('assets/images/' ~ address_book.picture) }}">
+                    {% endif %}
+                    <input type="file" name="picture">
+                </td>
+                <td>
+                    <input type="text" name="firstname" value="{{ address_book.firstname }}" autocomplete="off">
+                </td>
+                <td>
+                    <input type="text" name="lastname" value="{{ address_book.lastname }}" autocomplete="off">
+                </td>
+                <td>
+                    <textarea name="streetAndNumber">{{ address_book.streetAndNumber }}</textarea>
+                </td>
+                <td>
+                    <input type="text" name="zip" value="{{ address_book.zip }}" autocomplete="off">
+                </td>
+                <td>
+                    <input type="text" name="city" value="{{ address_book.city }}" autocomplete="off">
+                </td>
+                <td>
+                <input type="text" name="country" value="{{ address_book.country }}" autocomplete="off">
+                </td>
+                <td>
+                    <input type="text" name="phonenumber" value="{{ address_book.phonenumber }}" autocomplete="off">
+                </td>
+                <td>
+                    <input type="text" name="birthday" value="{{ address_book.birthday|date("Y-m-d") }}" autocomplete="off">
+                </td>
+                <td>
+                    <input type="text" name="emailAddress" value="{{ address_book.emailAddress }}" autocomplete="off">
+                </td>
+            </form>
+                <td class="wider">
+                    <button class="btn btn-primary btn-primary-red" type="submit" onclick="$('#update{{ address_book.id}}').submit();">Update</button>
+
+                    <a href="{{ path('view', {'id': address_book.id}) }}" class="btn btn-primary btn-primary-green">View</a>
+
+                    <form method="post" action="{{ app.request.getSchemeAndHttpHost() }}{{ path('delete', {'id': address_book.id}) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ address_book.id) }}">
+                        <button class="btn btn-primary delBtn" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %} 
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Picture</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Address</th>
+                <th>Zip</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>Birthday</th>
+                <th>Email</th>
+                <th>Options</th>
+            </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}
