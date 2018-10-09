@@ -40,9 +40,9 @@
         <tbody class="smallerTd" id="FormTable">
             {% for address_book in address_book_c %}
             <tr>
-            <form method="post" action="{{ app.request.getSchemeAndHttpHost() }}{{ path('edit', {'id': address_book.id}) }}" enctype="multipart/form-data" id="update{{address_book.id}}">
+            <form method="post" action="{{ app.request.getSchemeAndHttpHost() }}{{ path('view', {'id': address_book.id}) }}" enctype="multipart/form-data" id="update{{address_book.id}}">
                 <input type="hidden" name="_method" value="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ address_book.id) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('view' ~ address_book.id) }}">
                 <input type="hidden" name="id" value="{{ address_book.id }}">
                 <td>
                     {% if address_book.picture is not empty %}

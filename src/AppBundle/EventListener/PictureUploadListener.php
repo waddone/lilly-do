@@ -22,6 +22,7 @@ class PictureUploadListener
      */
     public function prePersist(LifecycleEventArgs $args)
     {
+
         $entity = $args->getEntity();
         $this->uploadFile($entity);
     }
@@ -32,6 +33,12 @@ class PictureUploadListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
+        $image  = $args->getOldValue('picture');
+        $newImg = $args->getNewValue('picture');
+
+        if(!$newImg) {
+            $entity->setPicture(new File($this->uploader->getTargetDirectory() . '/' . $image, false));
+        }   
         $this->uploadFile($entity);
     }
 

@@ -56,10 +56,10 @@ class DefaultController extends Controller
      * @return Response
      */
     
-    public function edit(Request $request, $id): Response
+    public function edit(Request $request, AddressBook $addressBook, $id): Response
     {
-
-        $em = $this->getDoctrine()->getManager();
+        
+        $em          = $this->getDoctrine()->getManager();
         $addressBook = $em->getRepository('AppBundle:AddressBook')->find($id);
         $addressBook->setFirstname($request->request->get('firstname'));
         $addressBook->setLastname($request->request->get('lastname'));
@@ -70,6 +70,20 @@ class DefaultController extends Controller
         $addressBook->setPhonenumber($request->request->get('phonenumber'));
         $addressBook->setBirthday(\DateTime::createFromFormat('Y-m-d', $request->request->get('birthday')));
         $addressBook->setEmailAddress($request->request->get('emailAddress'));    
+        /*
+        $file = $request->files->get('picture');
+        if($file) {    
+            //$addressBook->setPicture(new File($this->uploader->getTargetDirectory().'/'.$uploadedImg, false));
+
+            $fileName = date("YmdHis").'.'.$file->guessExtension();
+            try {
+                $file->move($this->getParameter('images_directory'), $fileName);
+            } catch (FileException $e) {
+                throw new \Exception('Upload picture error');
+            }
+            $addressBook->setPicture($fileName);
+        }
+        */
         $em->persist($addressBook);
         $em->flush();
         return $this->redirectToRoute('overview');
@@ -83,15 +97,14 @@ class DefaultController extends Controller
      */
     public function view(Request $request, AddressBook $addressBook, FileUploader $fileUploader): Response
     {
-      
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $addressBook = $em->getRepository('AppBundle:AddressBook')->find($id);
         $form = $this->createForm(AddressBookType::class, $addressBook);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($addressBook);
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('view', ['id' => $addressBook->getId()]);
-        
         }
 
         return $this->render('overview/view.html.twig', 
@@ -117,10 +130,6 @@ class DefaultController extends Controller
         }
         return $this->redirectToRoute('overview');
     }
-
-
-    
-
 
 }
 
